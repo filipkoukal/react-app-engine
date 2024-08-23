@@ -23,3 +23,4 @@ jobs:
       REGION: europe-west3
       PROJECT: river-span-433408-b2
       IMAGE: europe-west3-docker.pkg.dev/river-span-433408-b2/react-app-engine
+      PROJECT_NAME: react-app-engine
