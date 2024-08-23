@@ -1,9 +1,9 @@
 import { Android, Computer, Phishing } from '@mui/icons-material';
 
 export const ROUTES = {
-    GPUs: { route: '/', icon: <Computer /> },
-    Shrek: { route: '/shrek', icon: <Android /> },
-    Hooks: { route: '/hooks', icon: <Phishing /> },
+  GPUs: { route: '/', icon: <Computer /> },
+  Shrek: { route: '/shrek', icon: <Android /> },
+  Hooks: { route: '/hooks', icon: <Phishing /> },
 };
 
 export const DRAWER_WIDTH = 240;

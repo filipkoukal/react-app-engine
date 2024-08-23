@@ -1,25 +1,25 @@
 name: Deploy react intro to gcp
 
 on:
-    push:
-        branches:
-            - main
-    workflow_dispatch:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-    ci:
-        uses: ./.github/workflows/ci.yml
-        secrets: inherit
-        with:
-            NODE_VERSION: 20.x
-            WORKSPACE_CACHE_KEY: workspace-${{ github.run_id }}
-            REF: ${{ github.sha }}
-    cd:
-        needs: ci
-        uses: ./.github/workflows/cd.yml
-        secrets: inherit
-        with:
-            ENVIRONMENT: develop
-            REGION: europe-west3
-            PROJECT: react-app-engine
-            IMAGE: europe-west3-docker.pkg.dev/react-app-engine/react-app-engine
+  ci:
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit
+    with:
+      NODE_VERSION: 20.x
+      WORKSPACE_CACHE_KEY: workspace-${{ github.run_id }}
+      REF: ${{ github.sha }}
+  cd:
+    needs: ci
+    uses: ./.github/workflows/cd.yml
+    secrets: inherit
+    with:
+      ENVIRONMENT: develop
+      REGION: europe-west3
+      PROJECT: react-app-engine
+      IMAGE: europe-west3-docker.pkg.dev/react-app-engine/react-app-engine
