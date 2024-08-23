@@ -21,7 +21,8 @@ jobs:
     secrets: inherit
     with:
       ENVIRONMENT: main
-      REGION: europe-west3
+      REGION: europe-west1
       PROJECT: river-span-433408-b2
-      IMAGE: europe-west3-docker.pkg.dev/river-span-433408-b2/react-app-engine
+      IMAGE: europe-west1-docker.pkg.dev/river-span-433408-b2/react-app-engine/react-app-engine
       PROJECT_NAME: react-app-engine
+      API_ROUTE: https://river-span-433408-b2.ey.r.appspot.com

@@ -4,11 +4,12 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "vite",
+    "start": "serve dist -p 8080",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
-    "db": "npx json-server db.json",
+    "db": "json-server db.json -p 3000",
     "licence:check": "tf-licence-checker --config=./tf-licence-checker.config.js"
   },
   "dependencies": {
@@ -46,6 +47,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "eslint-plugin-unused-imports": "^3.2.0",
     "prettier": "^3.2.5",
+    "serve": "^14.2.3",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }

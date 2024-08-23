@@ -8,7 +8,7 @@ export const ROUTES = {
 
 export const DRAWER_WIDTH = 240;
 
-export const API_ROUTE = 'http://localhost:3000';
+export const API_ROUTE = import.meta.env.VITE_API_ROUTE || 'http://localhost:3000';
 
 export const MANUFACTURERS = ['AMD', 'NVIDIA', 'Intel'];
 export type Manufacturers = (typeof MANUFACTURERS)[number];

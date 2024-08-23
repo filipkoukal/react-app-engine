@@ -18,7 +18,9 @@ on:
       IMAGE:
         required: true
         type: string
-
+      API_ROUTE:
+        required: true
+        type: string
 jobs:
   deploy:
     environment: ${{ inputs.ENVIRONMENT }}
@@ -42,18 +44,13 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
 
       - name: Build image in Cloud Build
-
-        run: |
-          gcloud config set project ${{ inputs.PROJECT }} --verbosity=debug 
-          gcloud builds submit
-          --verbosity=debug 
+        run: gcloud builds submit
           --service-account=projects/${{ inputs.PROJECT }}/serviceAccounts/github-actions@${{ inputs.PROJECT }}.iam.gserviceaccount.com
           --region ${{ inputs.REGION }}
           --config ./cloudbuild.yaml
-          --substitutions _IMAGE_NAME=${{ inputs.IMAGE }},_PROJECT_ID=${{ inputs.PROJECT }}
+          --substitutions _IMAGE_NAME=${{ inputs.IMAGE }},_PROJECT_ID=${{ inputs.PROJECT }},_API_ROUTE=${{ inputs.API_ROUTE }}
 
-      - name: Deploy to Cloud Run
-        run: gcloud run deploy
+      - name: Deploy to App Engine
+        run: gcloud app deploy
+          --appyaml ./app.yaml
           --image-url ${{ inputs.IMAGE }}
-          --region ${{ inputs.REGION }}
-          --allow-unauthenticated
