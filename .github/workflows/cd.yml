@@ -42,9 +42,12 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
 
       - name: Build image in Cloud Build
-        run: gcloud builds submit
-          --verbosity=debug \
-          --service-account=projects/river-span-433408-b2/serviceAccounts/github-actions@${{ inputs.PROJECT }}.iam.gserviceaccount.com
+
+        run: |
+          gcloud config set project ${{ inputs.PROJECT }}
+          gcloud builds submit
+          --verbosity=debug 
+          --service-account=projects/${{ inputs.PROJECT }}/serviceAccounts/github-actions@${{ inputs.PROJECT }}.iam.gserviceaccount.com
           --region ${{ inputs.REGION }}
           --config ./cloudbuild.yaml
           --substitutions _IMAGE_NAME=${{ inputs.IMAGE }},_PROJECT_ID=${{ inputs.PROJECT }}
