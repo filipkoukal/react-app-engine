@@ -43,6 +43,7 @@ jobs:
 
       - name: Build image in Cloud Build
         run: gcloud builds submit
+          --verbosity=debug \
           --service-account=projects/${{ inputs.PROJECT }}/serviceAccounts/github-actions@${{ inputs.PROJECT }}.iam.gserviceaccount.com
           --region ${{ inputs.REGION }}
           --config ./cloudbuild.yaml
