@@ -19,6 +19,7 @@ jobs:
     uses: ./.github/workflows/cd.yml
     secrets: inherit
     with:
+      ENVIRONMENT: main
       REGION: europe-west3
       PROJECT: react-app-engine
       IMAGE: europe-west3-docker.pkg.dev/react-app-engine/react-app-engine
