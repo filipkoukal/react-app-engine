@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const config = {
     allowedLicenses: [
         '(Apache-2.0 OR MPL-1.1)',
@@ -28,10 +29,11 @@ const config = {
         'MPL-1.1',
         'WTFPL',
         'Zlib',
+        'SEE LICENSE IN ./LICENSE',
     ],
     ignoredPackages: ['react-use'],
     package: './package.json',
     checkDevDependencies: true,
 };
 
-export default config;
+module.exports = config;
