@@ -12,6 +12,9 @@ on:
       PROJECT:
         required: true
         type: string
+      PROJECT_NAME:
+        required: true
+        type: string
       IMAGE:
         required: true
         type: string
@@ -40,7 +43,7 @@ jobs:
 
       - name: Build image in Cloud Build
         run: gcloud builds submit
-          --service-account=projects/${{ inputs.PROJECT }}/serviceAccounts/github-actions@${{ inputs.PROJECT }}.iam.gserviceaccount.com
+          --service-account=projects/${{ inputs.PROJECT_NAME }}/serviceAccounts/github-actions@${{ inputs.PROJECT }}.iam.gserviceaccount.com
           --region ${{ inputs.REGION }}
           --config ./cloudbuild.yaml
           --substitutions _IMAGE_NAME=${{ inputs.IMAGE }},_PROJECT_ID=${{ inputs.PROJECT }}
