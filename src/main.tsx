@@ -9,14 +9,14 @@ import store from './store';
 import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <>
-        <Provider store={store}>
-            <ThemeProvider theme={theme}>
-                <BrowserRouter>
-                    <CssBaseline />
-                    <App />
-                </BrowserRouter>
-            </ThemeProvider>
-        </Provider>
-    </>
+  <>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <CssBaseline />
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
+  </>
 );

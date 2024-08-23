@@ -1,20 +1,20 @@
 name: Run code quality check
 
 on:
-    pull_request:
-        types: [opened, synchronize]
+  pull_request:
+    types: [opened, synchronize]
 
 permissions: write-all
 
 concurrency:
-    group: ${{ github.event.pull_request.number || github.ref }}
-    cancel-in-progress: true
+  group: ${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-    ci:
-        uses: ./.github/workflows/ci.yml
-        secrets: inherit
-        with:
-            NODE_VERSION: 20.x
-            WORKSPACE_CACHE_KEY: workspace-${{ github.run_id }}
-            REF: ${{ github.sha }}
+  ci:
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit
+    with:
+      NODE_VERSION: 20.x
+      WORKSPACE_CACHE_KEY: workspace-${{ github.run_id }}
+      REF: ${{ github.sha }}

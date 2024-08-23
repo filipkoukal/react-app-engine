@@ -14,60 +14,51 @@ import { ICellRendererParams } from 'ag-grid';
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
 type GridProps = {
-    deleteEvent: (rowData: Row) => void;
-    updateEvent: (rowData: Row) => void;
+  deleteEvent: (rowData: Row) => void;
+  updateEvent: (rowData: Row) => void;
 };
 
 export const Grid = ({ deleteEvent, updateEvent }: GridProps) => {
-    const openDeleteDialog = (rowData: Row) => {
-        deleteEvent(rowData);
-    };
+  const openDeleteDialog = (rowData: Row) => {
+    deleteEvent(rowData);
+  };
 
-    const openEditDialog = (rowData: Row) => {
-        updateEvent(rowData);
-    };
+  const openEditDialog = (rowData: Row) => {
+    updateEvent(rowData);
+  };
 
-    const rowData = useSelector((state: RootState) => state.grid.rows);
-    const dispatch = useDispatch<AppDispatch>();
+  const rowData = useSelector((state: RootState) => state.grid.rows);
+  const dispatch = useDispatch<AppDispatch>();
 
-    // Column Definitions: Defines & controls grid columns.
-    const colDefs: (ColDef<Row> | ColGroupDef<Row>)[] = [
-        { field: 'manufacturer' },
-        { field: 'model' },
-        { field: 'teraflops', headerName: 'TeraFlops' },
-        { field: 'tdp', headerName: 'TDP' },
-        { field: 'rt', headerName: 'Raytracing' },
-        {
-            headerName: 'Actions',
-            cellRenderer: (params: ICellRendererParams) =>
-                GridActionsRenderer({
-                    data: params.data,
-                    handleDelete: () => openDeleteDialog(params.data),
-                    handleUpdate: () => openEditDialog(params.data),
-                }),
-        },
-    ];
+  // Column Definitions: Defines & controls grid columns.
+  const colDefs: (ColDef<Row> | ColGroupDef<Row>)[] = [
+    { field: 'manufacturer' },
+    { field: 'model' },
+    { field: 'teraflops', headerName: 'TeraFlops' },
+    { field: 'tdp', headerName: 'TDP' },
+    { field: 'rt', headerName: 'Raytracing' },
+    {
+      headerName: 'Actions',
+      cellRenderer: (params: ICellRendererParams) =>
+        GridActionsRenderer({
+          data: params.data,
+          handleDelete: () => openDeleteDialog(params.data),
+          handleUpdate: () => openEditDialog(params.data),
+        }),
+    },
+  ];
 
-    useEffect(() => {
-        dispatch(fetchRows()); // Dispatch the action to fetch rows when the component mounts
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchRows()); // Dispatch the action to fetch rows when the component mounts
+  }, [dispatch]);
 
-    const defaultColDef: ColDef = {
-        flex: 1,
-    };
+  const defaultColDef: ColDef = {
+    flex: 1,
+  };
 
-    return (
-        <Box
-            pt={2}
-            height="85vh"
-            className={'ag-theme-quartz'}
-            sx={{ width: 1.0 }}
-        >
-            <AgGridReact
-                rowData={rowData}
-                columnDefs={colDefs}
-                defaultColDef={defaultColDef}
-            />
-        </Box>
-    );
+  return (
+    <Box pt={2} height="85vh" className={'ag-theme-quartz'} sx={{ width: 1.0 }}>
+      <AgGridReact rowData={rowData} columnDefs={colDefs} defaultColDef={defaultColDef} />
+    </Box>
+  );
 };
