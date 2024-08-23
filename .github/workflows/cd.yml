@@ -1,0 +1,52 @@
+name: react intro CD
+
+on:
+    workflow_call:
+        inputs:
+            ENVIRONMENT:
+                required: true
+                type: string
+            REGION:
+                required: true
+                type: string
+            PROJECT:
+                required: true
+                type: string
+            IMAGE:
+                required: true
+                type: string
+
+jobs:
+    deploy:
+        environment: ${{ inputs.ENVIRONMENT }}
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Google Auth
+              id: auth
+              uses: google-github-actions/auth@v2
+              with:
+                  workload_identity_provider: ${{ vars.WIF_PROVIDER }}
+                  service_account: ${{ vars.WIF_SERVICE_ACCOUNT }}
+
+            - name: Set up Cloud SDK
+              uses: google-github-actions/setup-gcloud@v2
+
+            - name: Build image in Cloud Build
+              run: gcloud builds submit
+                  --service-account=projects/${{ inputs.PROJECT }}/serviceAccounts/github-actions@${{ inputs.PROJECT }}.iam.gserviceaccount.com
+                  --region ${{ inputs.REGION }}
+                  --config ./cloudbuild.yaml
+                  --substitutions _IMAGE_NAME=${{ inputs.IMAGE }},_PROJECT_ID=${{ inputs.PROJECT }}
+
+            - name: Deploy to Cloud Run
+              run: gcloud run deploy
+                  --image-url ${{ inputs.IMAGE }}
+                  --region ${{ inputs.REGION }}
+                  --allow-unauthenticated
