@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const config = {
     allowedLicenses: [
         '(Apache-2.0 OR MPL-1.1)',
@@ -35,4 +34,4 @@ const config = {
     checkDevDependencies: true,
 };
 
-module.exports = config;
+export default config;

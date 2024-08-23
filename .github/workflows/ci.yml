@@ -60,14 +60,8 @@ jobs:
                   path: ${{ github.workspace }}
                   key: ${{ inputs.WORKSPACE_CACHE_KEY }}
 
-            - name: Check format
-              run: npm run format:check
-
-            - name: Check types
-              run: npm run types:check
-
-            - name: Check code style
-              run: npm run lint:check
+            - name: Check lint
+              run: npm run lint
 
     license:
         runs-on: ubuntu-latest
