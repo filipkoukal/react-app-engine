@@ -1,0 +1,84 @@
+{
+  "gpus": [
+    {
+      "manufacturer": "AMD",
+      "model": "RX 480",
+      "teraflops": 6,
+      "tdp": 6,
+      "rt": false,
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "manufacturer": "NVIDIA",
+      "model": "GTX 1060",
+      "teraflops": 6,
+      "tdp": 125,
+      "rt": false
+    },
+    {
+      "id": "3",
+      "manufacturer": "NVIDIA",
+      "model": "RTX 3090",
+      "teraflops": 30,
+      "tdp": 250,
+      "rt": true
+    },
+    {
+      "manufacturer": "AMD",
+      "model": "R9 290X",
+      "teraflops": 6,
+      "tdp": 250,
+      "rt": false,
+      "id": "4"
+    },
+    {
+      "id": "5",
+      "manufacturer": "NVIDIA",
+      "model": "GTX 1070",
+      "teraflops": 8,
+      "tdp": 150,
+      "rt": false
+    },
+    {
+      "id": "6",
+      "manufacturer": "NVIDIA",
+      "model": "GTX 1080Ti",
+      "teraflops": 12,
+      "tdp": 250,
+      "rt": false
+    },
+    {
+      "id": "7",
+      "manufacturer": "AMD",
+      "model": "RX 5700",
+      "teraflops": 13,
+      "tdp": 175,
+      "rt": false
+    },
+    {
+      "id": "8",
+      "manufacturer": "AMD",
+      "model": "RX 6800 XT",
+      "teraflops": 20,
+      "tdp": 250,
+      "rt": true
+    },
+    {
+      "manufacturer": "Intel",
+      "model": "model",
+      "teraflops": 92,
+      "tdp": 64,
+      "rt": false,
+      "id": "b6d7"
+    },
+    {
+      "manufacturer": "Intel",
+      "model": "dsadasd",
+      "teraflops": 5,
+      "tdp": 30,
+      "rt": true,
+      "id": "a8ac"
+    }
+  ]
+}
