@@ -4,6 +4,10 @@ WORKDIR /app
 
 ADD . /app
 
+ARG VITE_API_ROUTE
+
+ENV VITE_API_ROUTE=$VITE_API_ROUTE
+
 RUN cp .env.example .env
 
 RUN npm ci --legacy-peer-deps
