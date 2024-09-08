@@ -1,18 +1,20 @@
 steps:
-    - name: 'gcr.io/cloud-builders/docker'
-      args:
-          - build
-          - -t
-          - ${_IMAGE_NAME}
-          - .
-      secretEnv: ['AUTH_SECRET']
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - build
+      - -t
+      - ${_IMAGE_NAME}
+      - .
+      - --build-arg
+      - VITE_API_ROUTE=${_API_ROUTE}
+    secretEnv: ['AUTH_SECRET']
 images:
-    - ${_IMAGE_NAME}
+  - ${_IMAGE_NAME}
 
 availableSecrets:
-    secretManager:
-        - versionName: projects/${_PROJECT_ID}/secrets/REACT_APP_ENGINE_AUTH_SECRET/versions/latest
-          env: 'AUTH_SECRET'
+  secretManager:
+    - versionName: projects/${_PROJECT_ID}/secrets/REACT_APP_ENGINE_AUTH_SECRET/versions/latest
+      env: 'AUTH_SECRET'
 
 options:
-    logging: CLOUD_LOGGING_ONLY
+  logging: CLOUD_LOGGING_ONLY
